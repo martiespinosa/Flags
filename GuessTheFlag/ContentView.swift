@@ -217,8 +217,9 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            LinearGradient(colors: [.blue, .blue.opacity(0.5)], startPoint: .top, endPoint: .bottom)
-                .ignoresSafeArea()
+//            LinearGradient(colors: [.blue, .blue.opacity(0.5)], startPoint: .top, endPoint: .bottom)
+//                .ignoresSafeArea()
+            Color.green.ignoresSafeArea()
             
             VStack {
                 Spacer()
@@ -234,10 +235,10 @@ struct ContentView: View {
                         .frame(height: 40)
                         .padding(.bottom, 20)
                 }
-                .foregroundStyle(.white)
+                .foregroundStyle(.background.opacity(0.8))
                 .textCase(.uppercase)
                 
-                VStack(spacing: -20) {
+                VStack(spacing: -25) {
                     ForEach(0..<3) { number in
                         Button {
                             flagTapped(number)
@@ -246,7 +247,7 @@ struct ContentView: View {
                                 Image(countries[number])
                                     .resizable()
                                     .frame(width: 200, height: 200)
-                                    .shadow(color: selectedFlag != nil ? (number == correctAnswer ? .green : number == selectedFlag ? .red : .black.opacity(0.5)) : .black.opacity(0.5), radius: 15)
+//                                    .shadow(color: selectedFlag != nil ? (number == correctAnswer ? .green : number == selectedFlag ? .red : .black.opacity(0.5)) : .black.opacity(0.5), radius: 10)
                                     .opacity(0.85)
                                 Rectangle()
                                     .fill(selectedFlag != nil ? (number == correctAnswer ? Color.green.opacity(0.7) : number == selectedFlag ? Color.red.opacity(0.7) : Color.gray) : Color.clear)
@@ -262,7 +263,7 @@ struct ContentView: View {
                     }
                 }
                 .padding(.vertical)
-                .frame(maxWidth: .infinity)
+                .frame(width: 260, height: 560)
                 .background(.ultraThinMaterial)
                 .clipShape(RoundedRectangle(cornerRadius: 25.0))
                 
@@ -270,9 +271,10 @@ struct ContentView: View {
                 Text("SCORE: \(correctCount) / \(totalCount)")
                     .font(.headline)
                     .foregroundStyle(.secondary)
+                    .foregroundStyle(.background.opacity(0.8))
                     .persistentSystemOverlays(.hidden)
             }
-            .padding(.horizontal, 50)
+            .padding()
         }
         .onTapGesture {
             if selectedFlag != nil {
